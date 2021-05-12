@@ -18,13 +18,13 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '姓名',
-  `identityCard` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证号码',
+  `identity_card` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证号码',
   `school` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '学校',
   `major` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '专业',
   `grade` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '年级',
   `tel` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人电话',
   `subject` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教授科目',
-  `awardSituation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '获奖概况',
+  `award_situation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '获奖概况',
   `type` tinyint DEFAULT NULL COMMENT '授课方式',
   `gender` tinyint DEFAULT NULL COMMENT '性别',
   PRIMARY KEY (`id`)
@@ -36,20 +36,20 @@ DROP TABLE IF EXISTS `patriarchs`;
 
 CREATE TABLE `patriarchs` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `nameP` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '家长姓名',
-  `identityCardP` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '家长身份证号码',
-  `identityCardC` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '孩子身份证号码',
+  `name_p` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '家长姓名',
+  `identity_card_p` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '家长身份证号码',
+  `identity_card_c` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '孩子身份证号码',
   `school` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '学校',
-  `nameC` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '孩子姓名',
+  `name_c` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '孩子姓名',
   `grade` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '年级',
   `tel` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人电话',
-  `scoreSituation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '成绩概况',
-  `genderP` tinyint DEFAULT NULL COMMENT '家长性别',
+  `score_situation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '成绩概况',
+  `gender_p` tinyint DEFAULT NULL COMMENT '家长性别',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-insert into `students`(`name`,`identityCard`,`school`,`major`,`gender`,`grade`,`tel`,`subject`,`type`,`awardSituation`) values ("m","202020202202022020","华中师范大学","教育",1,"2020","110110110","数学",1,"无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv");
-insert into `patriarchs`(`nameP`,`identityCardP`,`nameC`,`identityCardC`,`school`,`genderP`,`grade`,`tel`,`scoreSituation`) values ("王","20202020220202202024","王小明","2020202022020220202424","华xiao学",1,"2020","110110110","无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv");
+insert into `students`(`name`,`identity_card`,`school`,`major`,`gender`,`grade`,`tel`,`subject`,`type`,`award_situation`) values ("m","202020202202022020","华中师范大学","教育",1,"2020","110110110","数学",1,"无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv");
+insert into `patriarchs`(`name_p`,`identity_card_p`,`name_c`,`identity_card_c`,`school`,`gender_p`,`grade`,`tel`,`score_situation`) values ("王","20202020220202202024","王小明","2020202022020220202424","华xiao学",1,"2020","110110110","无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv");
 
 
 
