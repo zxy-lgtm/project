@@ -16,7 +16,7 @@ func Router(r *gin.Engine) {
 		g1.POST("/in", handler.User)
 
 		//登陆
-		g1.POST("/up")
+		g1.POST("/up", handler.Userup)
 
 		//修改用户信息
 		g1.PUT("/students")
