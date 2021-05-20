@@ -23,6 +23,7 @@ CREATE TABLE `students` (
   `major` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '专业',
   `grade` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '年级',
   `tel` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人电话',
+  `email`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人邮箱',
   `subject` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教授科目',
   `award_situation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '获奖概况',
   `type` tinyint DEFAULT NULL COMMENT '授课方式',
@@ -43,6 +44,7 @@ CREATE TABLE `patriarchs` (
   `name_c` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '孩子姓名',
   `grade` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '年级',
   `tel` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人电话',
+  `email`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人邮箱',
   `score_situation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '成绩概况',
   `gender_p` tinyint DEFAULT NULL COMMENT '家长性别',
   PRIMARY KEY (`id`)
