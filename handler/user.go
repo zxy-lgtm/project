@@ -39,6 +39,7 @@ var loginfo = Loginfo{
 	Password: "123",
 }
 
+//注册
 func User(c *gin.Context) {
 	var tmpinfo RegisterInfo
 	if err := c.BindJSON(&tmpinfo); err != nil {
@@ -53,6 +54,7 @@ func User(c *gin.Context) {
 	})
 }
 
+//登录
 func Userup(c *gin.Context) {
 	var tmpinfo Loginfo
 	if err := c.BindJSON(&tmpinfo); err != nil {
@@ -81,6 +83,7 @@ func Userup(c *gin.Context) {
 	})
 }
 
+//修改信息
 func Students(c *gin.Context) {
 	var tmpstudent model.Students
 	if err := c.BindJSON(&tmpstudent); err != nil {
@@ -96,6 +99,7 @@ func Students(c *gin.Context) {
 
 }
 
+//修改信息
 func Patriarchs(c *gin.Context) {
 	var tmpstudent model.Patriarchs
 	if err := c.BindJSON(&tmpstudent); err != nil {

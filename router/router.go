@@ -19,8 +19,8 @@ func Router(r *gin.Engine) {
 		g1.POST("/up", handler.Userup)
 
 		//修改用户信息
-		g1.PUT("/students")
-		g1.PUT("/patriarchs")
+		g1.PUT("/students",handler.Students)
+		g1.PUT("/patriarchs",handler.Patriarchs)
 
 		//获取用户信息
 		g1.GET("/students")
