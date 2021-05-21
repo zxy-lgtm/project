@@ -50,6 +50,9 @@ CREATE TABLE `patriarchs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+DROP TABLE IF EXISTS `users`;
+
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '姓名',
@@ -62,7 +65,7 @@ CREATE TABLE `users` (
 
 insert into `students`(`name`,`identity_card`,`school`,`major`,`gender`,`grade`,`tel`,`subject`,`type`,`award_situation`,`email`) values ("m","202020202202022020","华中师范大学","教育",1,"2020","110110110","数学",1,"无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");
 insert into `patriarchs`(`name_p`,`identity_card_p`,`name_c`,`identity_card_c`,`school`,`gender_p`,`grade`,`tel`,`score_situation`,`email`) values ("王","20202020220202202024","王小明","2020202022020220202424","华xiao学",1,"2020","110110110","无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");
-insert into `students`(`name`,`identity_card`,`gender`,`email`) values ("m","202020202202022020",1,"123@qq.com");
+insert into `users`(`name`,`identity_card`,`gender`,`email`) values ("m","202020202202022020",1,"123@qq.com");
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
