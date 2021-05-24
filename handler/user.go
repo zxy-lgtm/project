@@ -115,6 +115,49 @@ func Patriarchs(c *gin.Context) {
 
 }
 
+func PatriarchsInfo(c *gin.Context) {
+	var tmppatriarchs model.Patriarchs
+	if err := c.BindJSON(&tmppatriarchs); err != nil {
+		c.JSON(400, gin.H{
+			"message": "id格式错误！",
+		})
+		return
+	}
+	if tmppatriarchs.ID == Patriarch.ID {
+		c.JSON(200, gin.H{
+			"message": Patriarchs,
+		})
+		return
+	} else {
+		c.JSON(404, gin.H{
+			"message": "未找到该用户信息",
+		})
+	}
+
+}
+
+func StudentInfo(c *gin.Context) {
+	var tmpstudent model.Students
+	if err := c.BindJSON(&tmpstudent); err != nil {
+		c.JSON(400, gin.H{
+			"message": "id格式错误！",
+		})
+		return
+	}
+	if tmpstudent.ID == Student.ID {
+		c.JSON(200, gin.H{
+			"message": Student,
+		})
+		return
+	}else {
+		c.JSON(404, gin.H{
+			"message": "未找到该用户信息",
+		})
+
+	}
+}
+
+
 type RegisterInfo struct {
 	Name   string `json:"name"`
 	Gender int    `json:"gender"`

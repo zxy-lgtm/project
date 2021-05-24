@@ -7,9 +7,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`Teach` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`teaches` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
-USE `Teach`;
+USE `teaches`;
 
 /*Table structure for table `students` */
 
@@ -61,6 +61,19 @@ CREATE TABLE `users` (
   `gender` tinyint DEFAULT NULL COMMENT '性别',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `classes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `student_name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教师姓名',
+  `name`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '课程名称',
+  `tips` tinyint DEFAULT NULL COMMENT '类型',
+  `status` tinyint DEFAULT NULL COMMENT '免费或收费',
+  `tips2` tinyint DEFAULT NULL COMMENT '课程数量和时长',
+  `money` int DEFAULT NULL COMMENT '收费',
+
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 insert into `students`(`name`,`identity_card`,`school`,`major`,`gender`,`grade`,`tel`,`subject`,`type`,`award_situation`,`email`) values ("m","202020202202022020","华中师范大学","教育",1,"2020","110110110","数学",1,"无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");

@@ -8,7 +8,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-const dsn = "root:123456@/Teach?charset=utf8&parseTime=True&loc=Local"
+const dsn = "root:123456@tcp(127.0.0.1:3306）/teaches?charset=utf8&parseTime=True&loc=Local"
 
 var Db *Database
 

@@ -50,3 +50,15 @@ type Patriarchs struct {
 	ScoreSituation     string `json:"score_situation"`
 	GenderParents      int    `json:"gender_p"` //1为男，2为女
 }
+
+type ClassInfo struct{
+	ID int `json:"id"`
+	StudentsName string `json:"students_name"`
+	Name string `json:"name"`
+	Money int `json:"money"`
+	Tips string `json:"tips"`
+	Tips2 string `json:"tips2"`
+	//状态码，1为精品课（收费），0为免费
+	Status int `json:"status"`
+
+}
