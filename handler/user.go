@@ -8,17 +8,16 @@ import (
 
 //测试数据
 var Student = model.Students{
-	ID:             123,
-	Name:           "名字",
-	IdentityCard:   "身份证",
-	School:         "学校",
-	Major:          "专业",
-	Tel:            "电话",
-	Grade:          "年级",
-	Gender:         1,
-	Subject:        "专业",
-	AwardSituation: "获奖情况",
-	Type:           1,
+	ID:           123,
+	Name:         "名字",
+	IdentityCard: "身份证",
+	School:       "学校",
+	Major:        "专业",
+	Tel:          "电话",
+	Grade:        "年级",
+	Gender:       1,
+	Subject:      "专业",
+	Type:         1,
 }
 
 //测试数据

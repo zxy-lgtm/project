@@ -10,7 +10,7 @@ import (
 func CreateU(tmpUser UsersInfo) bool {
 
 	var tooluser UsersInfo
-	err2 := Db.Self.Where(&UsersInfo{IdentityCard: tmpUser.IdentityCard}).Find(&tooluser).Error
+	err2 := Db.Self.Where(&UsersInfo{Account: tmpUser.Account}).Find(&tooluser).Error
 	if err2 == nil {
 		log.Println("creat user err: ", err2)
 		return false
@@ -22,12 +22,15 @@ func CreateU(tmpUser UsersInfo) bool {
 
 func CreateT(tmpUser UsersInfo) error {
 
-	var tooluser Students
-	err2 := Db.Self.Where(&Students{IdentityCard: tmpUser.IdentityCard}).Find(&tooluser).Error
+	var tooluser = Students{
+		ID: tmpUser.ID,
+	}
+	err2 := Db.Self.Where(&Students{ID: tmpUser.ID}).Find(&tooluser).Error
 	if err2 == nil {
 		log.Println("creat user err: ", err2)
 		return err2
 	}
+
 	Db.Self.Create(&tmpUser)
 
 	return nil
@@ -35,8 +38,12 @@ func CreateT(tmpUser UsersInfo) error {
 
 func CreateP(tmpUser UsersInfo) error {
 
-	var tooluser Patriarchs
-	err2 := Db.Self.Where(&Patriarchs{IdentityCardParent: tmpUser.IdentityCard}).Find(&tooluser).Error
+	var tooluser = Patriarchs{
+		ID:                 tmpUser.ID,
+		IdentityCardParent: tmpUser.IdentityCard,
+		GenderParents:      tmpUser.Gender,
+	}
+	err2 := Db.Self.Where(&Patriarchs{ID: tmpUser.ID}).Find(&tooluser).Error
 	if err2 == nil {
 		log.Println("creat user err: ", err2)
 		return err2
