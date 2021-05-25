@@ -25,9 +25,9 @@ CREATE TABLE `students` (
   `email`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人邮箱',
   `type` tinyint DEFAULT NULL COMMENT '授课方式',
   `gender` tinyint DEFAULT NULL COMMENT '性别',
-  `notes` text NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT `自我介绍`,
-  `style` varchar NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT `教学风格`,
-  `money` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT `教师设定的预约咨询价格`,
+  `notes` text  DEFAULT NULL COMMENT '自我介绍',
+  `style` varchar(50) DEFAULT NULL COMMENT '教学风格',
+  `money` int  DEFAULT NULL COMMENT '教师设定的预约咨询价格',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -36,21 +36,21 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '评价等级',
-  `all` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT `评价总结`,
-  `c1` int NULL COMMENT '心理素质',
-  `c2` int NULL COMMENT '仪态仪表',
-  `c3` int NULL COMMENT '语言表达',
-  `c4` int NULL COMMENT '思维品质',
-  `c5` int NULL COMMENT '教学设计',
-  `c6` int NULL COMMENT '教学实验',
-  `c7` int NULL COMMENT `教学评价`,
-  `w1` text NULL COMMENT '心理素质',
-  `w2` text NULL COMMENT '仪态仪表',
-  `w3` text NULL COMMENT '语言表达',
-  `w4` text NULL COMMENT '思维品质',
-  `w5` text NULL COMMENT '教学设计',
-  `w6` text NULL COMMENT '教学实验',
-  `w7` text NULL COMMENT `教学评价`,
+  `all` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '评价总结',
+  `c1` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '心理素质',
+  `c2` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '仪态仪表',
+  `c3` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '语言表达',
+  `c4` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '思维品质',
+  `c5` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学设计',
+  `c6` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学实验',
+  `c7` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学评价',
+  `w1` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '心理素质',
+  `w2` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '仪态仪表',
+  `w3` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '语言表达',
+  `w4` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '思维品质',
+  `w5` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学设计',
+  `w6` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学实验',
+  `w7` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学评价',
   `person_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `time`;
 CREATE TABLE `time` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '科目名字和年级',
-  `time` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT `时长`，
+  `time` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '时长',
   `person_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -79,8 +79,8 @@ DROP TABLE IF EXISTS `teach`;
 CREATE TABLE `teach` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '名字',
-  `time` varchar(30) NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学时长比如2019.9-2020.4',
-  `result` varchar NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学成果',
+  `time` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学时长比如2019.9-2020.4',
+  `result` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学成果',
   `person_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -90,7 +90,7 @@ DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '名字',
-  `tips` varchar(30) NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT '学生对学科的要求或者教师对教授学科的描述',
+  `tips` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '学生对学科的要求或者教师对教授学科的描述',
   `person_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
