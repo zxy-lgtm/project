@@ -29,8 +29,21 @@ CREATE TABLE `students` (
   `type` tinyint DEFAULT NULL COMMENT '授课方式',
   `gender` tinyint DEFAULT NULL COMMENT '性别',
   `teach_id` int AUTO_INCREMENT COMMENT '家教经历id',
+  `notes` text NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT `自我介绍`,
+  `style` varchar NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT `教学风格`,
+  `time_id` int NOT NULL  AUTO_INCREMENT COMMENT `教学时长id`,
+  `money` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT `教师设定的预约咨询价格`,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `time` (
+  `id` bigint(20) NOT NULL  COMMENT '主键ID',
+  `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '科目名字和年级',
+  `time` int COLLATE utf8_unicode_ci DEFAULT NULL COMMENT `时长`，
+  `person_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 CREATE TABLE `award_id` (
   `id` bigint(20) NOT NULL  COMMENT '主键ID',
