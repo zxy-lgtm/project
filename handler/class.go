@@ -8,26 +8,27 @@ import (
 
 //测试信息
 var class0 = model.ClassInfo{
-	ID: 1,
-	Name: "鸡兔同笼",
+	ID:           1,
+	Name:         "鸡兔同笼",
 	StudentsName: "王芳",
-	Status: 0,
-	Tips: "小学数学",
-	Tips2: "",
-	Money: 0,
+	Status:       0,
+	Tips:         "小学数学",
+	Tips2:        "",
+	Money:        0,
 }
 
 var class1 = model.ClassInfo{
-	ID: 2,
-	Name: "呐喊赏析",
+	ID:           2,
+	Name:         "呐喊赏析",
 	StudentsName: "黄芳",
-	Status: 1,
-	Tips: "初中语文",
-	Tips2: "七节课，45分钟/节",
-	Money: 200,
+	Status:       1,
+	Tips:         "初中语文",
+	Tips2:        "七节课，45分钟/节",
+	Money:        200,
 }
+
 //获取课堂信息
-func ClassInfo(c *gin.Context){
+func ClassInfo(c *gin.Context) {
 	var tmpclass model.ClassInfo
 	if err := c.BindJSON(&tmpclass); err != nil {
 		c.JSON(400, gin.H{
@@ -47,7 +48,7 @@ func ClassInfo(c *gin.Context){
 	}
 }
 
-func ClassPut(c *gin.Context){
+func ClassPut(c *gin.Context) {
 	var tmpclass model.ClassInfo
 	if err := c.BindJSON(&tmpclass); err != nil {
 		c.JSON(400, gin.H{
@@ -55,12 +56,12 @@ func ClassPut(c *gin.Context){
 		})
 		return
 	}
-	c.JSON(200,gin.H{
-		"message":"修改成功！",
+	c.JSON(200, gin.H{
+		"message": "修改成功！",
 	})
 }
 
-func ClassPost(c *gin.Context){
+func ClassPost(c *gin.Context) {
 	var tmpclass model.ClassInfo
 	if err := c.BindJSON(&tmpclass); err != nil {
 		c.JSON(400, gin.H{
@@ -68,7 +69,7 @@ func ClassPost(c *gin.Context){
 		})
 		return
 	}
-	c.JSON(200,gin.H{
-		"message":"上传成功！",
+	c.JSON(200, gin.H{
+		"message": "上传成功！",
 	})
 }

@@ -34,7 +34,7 @@ var Patriarch = model.Patriarchs{
 	GenderParents:      1,
 	ScoreSituation:     "成绩情况",
 }
-var loginfo = Loginfo{
+var loginfo = LoginInfo{
 	ID:       "123",
 	Password: "123",
 }
@@ -56,7 +56,7 @@ func User(c *gin.Context) {
 
 //登录
 func Userup(c *gin.Context) {
-	var tmpinfo Loginfo
+	var tmpinfo LoginInfo
 	if err := c.BindJSON(&tmpinfo); err != nil {
 		c.JSON(400, gin.H{
 			"message": "输入格式有误",
@@ -149,14 +149,13 @@ func StudentInfo(c *gin.Context) {
 			"message": Student,
 		})
 		return
-	}else {
+	} else {
 		c.JSON(404, gin.H{
 			"message": "未找到该用户信息",
 		})
 
 	}
 }
-
 
 type RegisterInfo struct {
 	Name   string `json:"name"`
@@ -165,7 +164,7 @@ type RegisterInfo struct {
 	Email  string `json:"email"`
 }
 
-type Loginfo struct {
+type LoginInfo struct {
 	ID       string `json:"id"`
 	Password string `json:"password"`
 }

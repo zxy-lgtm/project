@@ -51,14 +51,22 @@ type Patriarchs struct {
 	GenderParents      int    `json:"gender_p"` //1为男，2为女
 }
 
-type ClassInfo struct{
-	ID int `json:"id"`
+type ClassInfo struct {
+	ID           int    `json:"id"`
 	StudentsName string `json:"students_name"`
-	Name string `json:"name"`
-	Money int `json:"money"`
-	Tips string `json:"tips"`
-	Tips2 string `json:"tips2"`
+	Name         string `json:"name"`
+	Money        int    `json:"money"`
+	Tips         string `json:"tips"`
+	Tips2        string `json:"tips2"`
 	//状态码，1为精品课（收费），0为免费
 	Status int `json:"status"`
+}
 
+type UsersInfo struct {
+	ID           int    `json:"id"`
+	Name         string `json:"name"`
+	IdentityCard string `json:"identity_card"`
+	Gender       int    `json:"gender"` //1为男，2为女
+	Account      string `json:"account"`
+	Password     string `json:"password"`
 }

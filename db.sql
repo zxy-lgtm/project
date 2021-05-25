@@ -24,12 +24,41 @@ CREATE TABLE `students` (
   `grade` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '年级',
   `tel` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人电话',
   `email`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人邮箱',
-  `subject` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教授科目',
-  `award_situation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '获奖概况',
+  `subject_id` int  NOT NULL  COMMENT '教授科目id',
+  `award_id` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '获奖id',
   `type` tinyint DEFAULT NULL COMMENT '授课方式',
   `gender` tinyint DEFAULT NULL COMMENT '性别',
+  `teach_id` int AUTO_INCREMENT COMMENT '家教经历id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `award_id` (
+  `id` bigint(20) NOT NULL  COMMENT '主键ID',
+  `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '名字',
+  `person_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `teach` (
+  `id` bigint(20) NOT NULL  COMMENT '主键ID',
+  `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '名字',
+  `time` varchar(30) NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学时长比如2019.9-2020.4',
+  `result` varchar NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT '教学成果',
+  `person_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+CREATE TABLE `suject` (
+  `id` bigint(20) NOT NULL  COMMENT '主键ID',
+  `name` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '名字',
+  `tips` varchar(30) NULLCOLLATE utf8_unicode_ci DEFAULT NULL COMMENT '学生对学科的要求或者教师对教授学科的描述',
+  `person_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 /*Table structure for table `patriarchs` */
 
@@ -47,6 +76,7 @@ CREATE TABLE `patriarchs` (
   `email`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人邮箱',
   `score_situation` text COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '成绩概况',
   `gender_p` tinyint DEFAULT NULL COMMENT '家长性别',
+  `subject_id` int  NOT NULL  COMMENT '需求科目id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -59,6 +89,8 @@ CREATE TABLE `users` (
   `identity_card` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证号码',
   `email`varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '联系人邮箱',
   `gender` tinyint DEFAULT NULL COMMENT '性别',
+  `password` varchar(30) NOT NULL,
+  `account` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -76,9 +108,9 @@ CREATE TABLE `classes` (
 
 
 
-insert into `students`(`name`,`identity_card`,`school`,`major`,`gender`,`grade`,`tel`,`subject`,`type`,`award_situation`,`email`) values ("m","202020202202022020","华中师范大学","教育",1,"2020","110110110","数学",1,"无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");
-insert into `patriarchs`(`name_p`,`identity_card_p`,`name_c`,`identity_card_c`,`school`,`gender_p`,`grade`,`tel`,`score_situation`,`email`) values ("王","20202020220202202024","王小明","2020202022020220202424","华xiao学",1,"2020","110110110","无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");
-insert into `users`(`name`,`identity_card`,`gender`,`email`) values ("m","202020202202022020",1,"123@qq.com");
+--insert into `students`(`name`,`identity_card`,`school`,`major`,`gender`,`grade`,`tel`,`subject`,`type`,`award_situation`,`email`) values ("m","202020202202022020","华中师范大学","教育",1,"2020","110110110","数学",1,"无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");
+--insert into `patriarchs`(`name_p`,`identity_card_p`,`name_c`,`identity_card_c`,`school`,`gender_p`,`grade`,`tel`,`score_situation`,`email`) values ("王","20202020220202202024","王小明","2020202022020220202424","华xiao学",1,"2020","110110110","无1111111111111打我v而外国分   ￥v2v3rg3ggvw    2gvv","123@qq.com");
+--insert into `users`(`name`,`identity_card`,`gender`,`email`) values ("m","202020202202022020",1,"123@qq.com");
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
