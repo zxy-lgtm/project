@@ -234,6 +234,165 @@ func StudentInfo(c *gin.Context) {
 
 }
 
+//time是教学时长哦
+func TimeInfo(c *gin.Context) {
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	times, ok := model.FindTimeUID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户的相关信息！",
+			"code":    "100003",
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message": times,
+		"code":    "200000",
+	})
+}
+
+func SubjectInfo(c *gin.Context) {
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	subjects, ok := model.FindSubjectUID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户的相关信息！",
+			"code":    "100003",
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message": subjects,
+		"code":    "200000",
+	})
+
+}
+
+func CommentInfo(c *gin.Context) {
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	comment, ok := model.FindCommentUID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户的相关信息！",
+			"code":    "100003",
+		})
+		return
+	}
+
+	var comment_return = model.CommentReturn{
+		Name: model.StrName(comment.Name),
+		W1:   comment.W1,
+		W2:   comment.W2,
+		W3:   comment.W3,
+		W4:   comment.W4,
+		W5:   comment.W5,
+		W6:   comment.W6,
+		W7:   comment.W7,
+		All:  comment.All,
+		C1:   comment.C1,
+		C2:   comment.C2,
+		C3:   comment.C3,
+		C4:   comment.C4,
+		C5:   comment.C5,
+		C6:   comment.C6,
+		C7:   comment.C7,
+	}
+
+	c.JSON(200, gin.H{
+		"message": comment_return,
+		"code":    "200000",
+	})
+
+}
+
+func AwardInfo(c *gin.Context) {
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	awards, ok := model.FindAwardUID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户的相关信息！",
+			"code":    "100003",
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message": awards,
+		"code":    "200000",
+	})
+
+}
+
+func TeachInfo(c *gin.Context) {
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	teaches, ok := model.FindTeachUID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户的相关信息！",
+			"code":    "100003",
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message": teaches,
+		"code":    "200000",
+	})
+
+}
+
 /*type RegisterInfo struct {
 	Name   string `json:"name"`
 	Gender int    `json:"gender"`

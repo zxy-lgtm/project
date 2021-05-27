@@ -43,10 +43,34 @@ type ChangeStudents struct {
 	Money int `json:"money"`
 }
 
-type CommentInfo struct {
+type Comment struct {
 	ID       int    `json:"id"`   //评级等级
 	Name     int    `json:"name"` //评价总结
 	All      string `json:"all"`  //1为心理素质，2为仪态仪表，3为语言表达，4为思维品质，5为教学设计，6为教学实验，7为教学评价
+	C1       int    `json:"c1"`
+	C2       int    `json:"c2"`
+	C3       int    `json:"c3"`
+	C4       int    `json:"c4"`
+	C5       int    `json:"c5"`
+	C6       int    `json:"c6"`
+	C7       int    `json:"c7"`
+	W1       string `json:"w1"`
+	W2       string `json:"w2"`
+	W3       string `json:"w3"`
+	W4       string `json:"w4"`
+	W5       string `json:"w5"`
+	W6       string `json:"w6"`
+	W7       string `json:"w7"`
+	PersonID int    `json:"person_id"`
+}
+
+type CommentReturn struct {
+	ID int `json:"id"`
+	//评级等级
+	Name int `json:"name"`
+	//评价总结
+	All string `json:"all"`
+	//1为心理素质，2为仪态仪表，3为语言表达，4为思维品质，5为教学设计，6为教学实验，7为教学评价
 	C1       int    `json:"c1"`
 	C2       int    `json:"c2"`
 	C3       int    `json:"c3"`

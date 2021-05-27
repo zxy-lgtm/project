@@ -68,6 +68,51 @@ func FindStudentsID(id int) (Students, bool) {
 	return student, true
 }
 
+func FindTimeUID(uid int) ([]Time, bool) {
+	var times []Time
+	err := Db.Self.Where(&Time{PersonID: uid}).Find(&times).Error
+	if err != nil {
+		return times, false
+	}
+	return times, true
+}
+
+func FindSubjectUID(uid int) ([]Subject, bool) {
+	var subjects []Subject
+	err := Db.Self.Where(&Subject{PersonID: uid}).Find(&subjects).Error
+	if err != nil {
+		return subjects, false
+	}
+	return subjects, true
+}
+
+func FindAwardUID(uid int) ([]Award, bool) {
+	var awards []Award
+	err := Db.Self.Where(&Award{PersonID: uid}).Find(&awards).Error
+	if err != nil {
+		return awards, false
+	}
+	return awards, true
+}
+
+func FindTeachUID(uid int) ([]Teach, bool) {
+	var teaches []Teach
+	err := Db.Self.Where(&Teach{PersonID: uid}).Find(&teaches).Error
+	if err != nil {
+		return teaches, false
+	}
+	return teaches, true
+}
+
+func FindCommentUID(uid int) (Comment, bool) {
+	var comment Comment
+	err := Db.Self.Where(&Comment{PersonID: uid}).Find(&comment).Error
+	if err != nil {
+		return comment, false
+	}
+	return comment, true
+}
+
 func UpdateStudent(tmpstudent Students) bool {
 
 	if err := Db.Self.Model(&Students{}).Where(Students{ID: tmpstudent.ID}).Update(&tmpstudent).Error; err != nil {

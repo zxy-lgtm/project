@@ -25,6 +25,11 @@ func Router(r *gin.Engine) {
 		//获取用户信息
 		g1.GET("/students/:uid", handler.StudentInfo)
 		g1.GET("/patriarchs", handler.PatriarchsInfo)
+		g1.GET("/time/:uid", handler.TimeInfo)
+		g1.GET("/subject/:uid", handler.SubjectInfo)
+		g1.GET("/comment/:uid", handler.CommentInfo)
+		g1.GET("/award/:uid", handler.AwardInfo)
+		g1.GET("/teach/:uid", handler.TeachInfo)
 	}
 	//课堂
 	g2 := r.Group("/project/v1/class")
