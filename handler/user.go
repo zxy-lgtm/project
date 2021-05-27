@@ -312,22 +312,22 @@ func CommentInfo(c *gin.Context) {
 	}
 
 	var comment_return = model.CommentReturn{
-		Name: model.StrName(comment.Name),
-		W1:   comment.W1,
-		W2:   comment.W2,
-		W3:   comment.W3,
-		W4:   comment.W4,
-		W5:   comment.W5,
-		W6:   comment.W6,
-		W7:   comment.W7,
-		All:  comment.All,
-		C1:   comment.C1,
-		C2:   comment.C2,
-		C3:   comment.C3,
-		C4:   comment.C4,
-		C5:   comment.C5,
-		C6:   comment.C6,
-		C7:   comment.C7,
+		Grade: model.StrName(comment.Name),
+		W1:    comment.W1,
+		W2:    comment.W2,
+		W3:    comment.W3,
+		W4:    comment.W4,
+		W5:    comment.W5,
+		W6:    comment.W6,
+		W7:    comment.W7,
+		All:   comment.All,
+		C1:    comment.C1,
+		C2:    comment.C2,
+		C3:    comment.C3,
+		C4:    comment.C4,
+		C5:    comment.C5,
+		C6:    comment.C6,
+		C7:    comment.C7,
 	}
 
 	c.JSON(200, gin.H{
