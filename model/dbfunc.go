@@ -2,20 +2,16 @@ package model
 
 import (
 	"log"
-	"project/handler"
 )
 
 //const dsn = "root:123456@/PICKUP?charset=utf8&parseTime=True&loc=Local"
 
-func CreateU(tmpUser UsersInfo) bool {
+func CreateU(tmpUser LoginInfo) bool {
 
-	var tooluser UsersInfo
-	err2 := Db.Self.Where(&UsersInfo{Account: tmpUser.Account}).Find(&tooluser).Error
-	if err2 == nil {
-		log.Println("creat user err: ", err2)
+	if err := Db.Self.Create(&tmpUser).Error; err != nil {
+		log.Println("creat user err:", err)
 		return false
 	}
-	Db.Self.Create(&tmpUser)
 
 	return true
 }
@@ -53,23 +49,32 @@ func CreateP(tmpUser UsersInfo) error {
 	return nil
 }
 
-//登录操作，账户不存在返回0，密码错误返回1，否则返回2
-func Login(tmpLogin handler.LoginInfo) int {
-
+//通过account寻找user中的用户，找得到则返回该用户信息和true
+func FindUserAccount(account string) (UsersInfo, bool) {
 	var user UsersInfo
-	var logininfo handler.LoginInfo
-	err1 := Db.Self.Where(&UsersInfo{Account: tmpLogin.ID}).Find(&user).Error
-	if err1 != nil {
-		log.Println(err1)
-		return 0
+	err := Db.Self.Where(&UsersInfo{Account: account}).First(&user).Error
+	if err != nil {
+		return user, false
 	}
-	logininfo.Password = user.Password
+	return user, true
+}
 
-	if logininfo.Password != tmpLogin.Password {
-		return 1
+func FindStudentsID(id int) (Students, bool) {
+	var student Students
+	err := Db.Self.Where(&Students{ID: id}).Find(&student).Error
+	if err != nil {
+		return student, false
 	}
+	return student, true
+}
 
-	return 2
+func UpdateStudent(tmpstudent Students) bool {
+
+	if err := Db.Self.Model(&Students{}).Where(Students{ID: tmpstudent.ID}).Update(&tmpstudent).Error; err != nil {
+		return false
+	}
+	return true
+
 }
 
 /*func FindUser(uid string) (Users, error) {

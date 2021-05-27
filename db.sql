@@ -28,6 +28,9 @@ CREATE TABLE `students` (
   `notes` text  DEFAULT NULL COMMENT '自我介绍',
   `style` varchar(50) DEFAULT NULL COMMENT '教学风格',
   `money` int  DEFAULT NULL COMMENT '教师设定的预约咨询价格',
+  `identity_card_front` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证照片前',
+  `identity_card_back` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证照片后',
+  `identity_card_number` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '孩子身份证号码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

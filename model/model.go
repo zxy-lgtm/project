@@ -1,28 +1,52 @@
 package model
 
+import "github.com/dgrijalva/jwt-go"
+
+type LoginInfo struct {
+	Account  string `json:"account"`
+	Password string `json:"password"`
+}
+
 type Students struct {
-	ID           int    `json:"id"`
-	Name         string `json:"name"`
+	ID            int    `json:"id"`
+	Name          string `json:"name"`
+	IdentityCard  string `json:"identity_card"`
+	IdentityCardF string `json:"identity_card_front"`
+	IdentityCardB string `json:"identity_card_back"`
+	School        string `json:"school"`
+	Major         string `json:"major"`
+	Tel           string `json:"tel"`
+	Grade         string `json:"grade"`
+	Subject       string `json:"subject"`
+	Type          int    `json:"type"`   //授课方式，1为线上，2为线下，3为两者皆可
+	Gender        int    `json:"gender"` //1为男，2为女
+	Notes         string `json:"notes"`
+	Style         string `json:"style"`
+	Money         int    `json:"money"`
+}
+
+//完善信息时所填写的内容
+type ChangeStudents struct {
+	Name         string `json:"name"` //真实姓名
 	IdentityCard string `json:"identity_card"`
-	School       string `json:"school"`
-	Major        string `json:"major"`
-	Tel          string `json:"tel"`
-	Grade        string `json:"grade"`
-	Subject      string `json:"subject"`
-	Type         int    `json:"type"`   //授课方式，1为线上，2为线下，3为两者皆可
-	Gender       int    `json:"gender"` //1为男，2为女
-	Notes        string `json:"notes"`
-	Style        string `json:"style"`
-	Money        int    `json:"money"`
+	School       string `json:"school"` //学校
+	Major        string `json:"major"`  //专业
+	//Tel          string `json:"tel"`
+	Grade         string `json:"grade"` //年级
+	IdentityCardF string `json:"identity_card_front"`
+	IdentityCardB string `json:"identity_card_back"`
+	//Subject      string `json:"subject"`
+	//Type         int    `json:"type"`   //授课方式，1为线上，2为线下，3为两者皆可
+	//Gender       int    `json:"gender"` //1为男，2为女
+	//Notes        string `json:"notes"`
+	//Style        string `json:"style"`
+	Money int `json:"money"`
 }
 
 type CommentInfo struct {
-	ID int `json:"id"`
-	//评级等级
-	Name int `json:"name"`
-	//评价总结
-	All string `json:"all"`
-	//1为心理素质，2为仪态仪表，3为语言表达，4为思维品质，5为教学设计，6为教学实验，7为教学评价
+	ID       int    `json:"id"`   //评级等级
+	Name     int    `json:"name"` //评价总结
+	All      string `json:"all"`  //1为心理素质，2为仪态仪表，3为语言表达，4为思维品质，5为教学设计，6为教学实验，7为教学评价
 	C1       int    `json:"c1"`
 	C2       int    `json:"c2"`
 	C3       int    `json:"c3"`
@@ -62,10 +86,9 @@ type Teach struct {
 }
 
 type Subject struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
-	//tips如果是教师则是对这门课的描述，如果是学生则是对这门课的要求
-	Tips     string `json:"tips"`
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+	Tips     string `json:"tips"` //tips如果是教师则是对这门课的描述，如果是学生则是对这门课的要求
 	PersonID int    `json:"person_id"`
 }
 
@@ -128,8 +151,7 @@ type ClassInfo struct {
 	Money        int    `json:"money"`
 	Tips         string `json:"tips"`
 	Tips2        string `json:"tips2"`
-	//状态码，1为精品课（收费），0为免费
-	Status int `json:"status"`
+	Status       int    `json:"status"` //状态码，1为精品课（收费），0为免费
 }
 
 type UsersInfo struct {
@@ -139,4 +161,15 @@ type UsersInfo struct {
 	Gender       int    `json:"gender"` //1为男，2为女
 	Account      string `json:"account"`
 	Password     string `json:"password"`
+}
+
+type JwtClaims struct {
+	jwt.StandardClaims
+	UID string `json:"uid"`
+}
+
+var Secret = "miniProject"
+
+type Res struct {
+	Msg string `json:"msg"`
 }

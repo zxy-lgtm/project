@@ -19,27 +19,27 @@ func Router(r *gin.Engine) {
 		g1.POST("/up", handler.Userup)
 
 		//修改用户信息
-		g1.PUT("/students",handler.Students)
-		g1.PUT("/patriarchs",handler.Patriarchs)
+		g1.PUT("/students/:uid", handler.Students)
+		g1.PUT("/patriarchs", handler.Patriarchs)
 
 		//获取用户信息
-		g1.GET("/students",handler.StudentInfo)
-		g1.GET("/patriarchs",handler.PatriarchsInfo)
+		g1.GET("/students/:uid", handler.StudentInfo)
+		g1.GET("/patriarchs", handler.PatriarchsInfo)
 	}
 	//课堂
 	g2 := r.Group("/project/v1/class")
 	{
 		//新建课堂
-		g2.POST("/",handler.ClassPost)
+		g2.POST("/", handler.ClassPost)
 
 		//取消课堂（可能有，没看到，先不写）
 		//g2.PUT("/")
 
 		//查询课堂
-		g2.GET("/",handler.ClassInfo)
+		g2.GET("/", handler.ClassInfo)
 
 		//更新课堂信息
-		g2.PUT("/",handler.ClassPut)
+		g2.PUT("/", handler.ClassPut)
 
 	}
 	//花园

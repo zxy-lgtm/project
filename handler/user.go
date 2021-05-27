@@ -1,8 +1,13 @@
 package handler
 
 import (
+	"fmt"
+	"log"
 	"project/model"
+	"strconv"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
@@ -33,39 +38,60 @@ var Patriarch = model.Patriarchs{
 	GenderParents:      1,
 	ScoreSituation:     "成绩情况",
 }
-var loginfo = LoginInfo{
-	ID:       "123",
-	Password: "123",
-}
 
 //注册
 func User(c *gin.Context) {
-	var tmpinfo RegisterInfo
+	//var tmpinfo RegisterInfo
+	var tmpinfo model.LoginInfo
 	if err := c.BindJSON(&tmpinfo); err != nil {
 		c.JSON(400, gin.H{
 			"message": "输入格式有误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	_, ok := model.FindUserAccount(tmpinfo.Account)
+	if ok {
+		c.JSON(200, gin.H{
+			"message": "用户名重复！",
+			"code":    "200001",
+		})
+		return
+	}
+
+	ok = model.CreateU(tmpinfo)
+	if !ok {
+		c.JSON(400, gin.H{
+			"message": "存入数据失败！",
+			"code":    "100002",
 		})
 		return
 	}
 
 	c.JSON(200, gin.H{
 		"message": "注册成功！",
+		"code":    "200000",
 	})
 }
 
 //登录
 func Userup(c *gin.Context) {
-	var tmpinfo LoginInfo
+	var tmpinfo model.LoginInfo
 	if err := c.BindJSON(&tmpinfo); err != nil {
 		c.JSON(400, gin.H{
 			"message": "输入格式有误",
+			"code":    "100001",
 		})
 		return
 	}
 
-	if tmpinfo.ID != loginfo.ID {
+	loginfo, ok := model.FindUserAccount(tmpinfo.Account)
+
+	if !ok {
 		c.JSON(404, gin.H{
 			"message": "账号错误！",
+			"code":    "100003",
 		})
 		return
 	}
@@ -73,27 +99,72 @@ func Userup(c *gin.Context) {
 	if tmpinfo.Password != loginfo.Password {
 		c.JSON(404, gin.H{
 			"message": "密码错误！",
+			"code":    "100004",
 		})
 		return
 	}
 
 	c.JSON(200, gin.H{
 		"message": "登录成功！",
+		"code":    "200000",
+		"user_id": loginfo.ID,
 	})
 }
 
-//修改信息
+//完善信息
 func Students(c *gin.Context) {
-	var tmpstudent model.Students
+
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	var tmpstudent model.ChangeStudents
 	if err := c.BindJSON(&tmpstudent); err != nil {
 		c.JSON(400, gin.H{
 			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
+	}
+
+	student, ok := model.FindStudentsID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户！",
+			"code":    "100003",
+		})
+	}
+	student = model.Students{
+		School:        tmpstudent.School,
+		IdentityCard:  tmpstudent.IdentityCard,
+		IdentityCardF: tmpstudent.IdentityCardF,
+		IdentityCardB: tmpstudent.IdentityCardB,
+		Name:          tmpstudent.Name,
+		Major:         tmpstudent.Major,
+		Money:         tmpstudent.Money,
+		Grade:         tmpstudent.Grade,
+	}
+
+	ok = model.UpdateStudent(student)
+
+	if !ok {
+		c.JSON(400, gin.H{
+			"message": "存入数据失败！修改失败！",
+			"code":    "100002",
 		})
 		return
 	}
 
 	c.JSON(200, gin.H{
 		"message": "修改成功！",
+		"code":    "200000",
 	})
 
 }
@@ -136,34 +207,68 @@ func PatriarchsInfo(c *gin.Context) {
 }
 
 func StudentInfo(c *gin.Context) {
-	var tmpstudent model.Students
-	if err := c.BindJSON(&tmpstudent); err != nil {
-		c.JSON(400, gin.H{
-			"message": "id格式错误！",
-		})
-		return
-	}
-	if tmpstudent.ID == Student.ID {
-		c.JSON(200, gin.H{
-			"message": Student,
-		})
-		return
-	} else {
-		c.JSON(404, gin.H{
-			"message": "未找到该用户信息",
-		})
 
+	uid := c.Param("uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "输入有误，格式错误",
+			"code":    "100001",
+		})
+		return
 	}
+
+	student, ok := model.FindStudentsID(id)
+
+	if !ok {
+		c.JSON(404, gin.H{
+			"message": "找不到该id的用户！",
+			"code":    "100003",
+		})
+	}
+
+	c.JSON(200, gin.H{
+		"message": student,
+		"code":    "200000",
+	})
+
 }
 
-type RegisterInfo struct {
+/*type RegisterInfo struct {
 	Name   string `json:"name"`
 	Gender int    `json:"gender"`
 	Tel    string `json:"tel"`
 	Email  string `json:"email"`
+}*/
+
+func produceToken(uid string) string {
+	//id, _ := strconv.Atoi(uid)
+	claims := &model.JwtClaims{
+		UID: uid,
+	}
+	claims.IssuedAt = time.Now().Unix()
+	claims.ExpiresAt = time.Now().Add(time.Second * time.Duration(ExpireTime)).Unix()
+	singedToken, err := genToken(*claims)
+	//fmt.Println(singedToken, err)
+	if err != nil {
+		log.Print("produceToken err:")
+		fmt.Println(err)
+		return ""
+	}
+	return singedToken
 }
 
-type LoginInfo struct {
-	ID       string `json:"id"`
-	Password string `json:"password"`
+func genToken(claims model.JwtClaims) (string, error) {
+	//token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	signedToken, err := token.SignedString([]byte(key))
+	if err != nil {
+		return "", err
+	}
+	return signedToken, nil
 }
+
+var (
+	key        = "miniProject" //salt
+	ExpireTime = 3600          //token expire time
+)
