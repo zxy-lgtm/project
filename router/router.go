@@ -47,7 +47,7 @@ func Router(r *gin.Engine) {
 		g2.PUT("/", handler.ClassPut)
 
 	}
-	//花园
+	/*//花园
 	g3 := r.Group("/project/v1/garden")
 	{
 		//获取用户花园皮肤
@@ -63,5 +63,5 @@ func Router(r *gin.Engine) {
 		//g3.PUT("/buy", handler.BuyFlower)
 	}
 	//作业
-	r.GET("/project/v1/homework")
+	r.GET("/project/v1/homework")*/
 }
